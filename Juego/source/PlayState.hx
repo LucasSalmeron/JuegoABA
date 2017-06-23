@@ -6,6 +6,7 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.addons.display.FlxBackdrop;
+
 class PlayState extends FlxState
 {
 	
@@ -23,17 +24,24 @@ class PlayState extends FlxState
 		
 		add(fg);
 		add(bg);
+		
+		
+		var texto : FlxText = new FlxText(0, 0, 0, "Hola");
+		add(texto);
+		
+		FlxG.
 	
 		
-		
+	
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		
 		if (FlxG.keys.pressed.LEFT){ FlxG.camera.scroll.add( -5, 0); }
 		if (FlxG.keys.pressed.RIGHT){ FlxG.camera.scroll.add( 5 , 0); }
 		
 	}
+	
+	
 }
