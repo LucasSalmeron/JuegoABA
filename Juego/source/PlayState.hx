@@ -6,10 +6,11 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.addons.display.FlxBackdrop;
+import flixel.FlxCamera.FlxCameraFollowStyle;
 
 class PlayState extends FlxState
 {
-	
+	public var personaje : Personaje;
 	
 	override public function create():Void
 	{
@@ -25,22 +26,14 @@ class PlayState extends FlxState
 		add(fg);
 		add(bg);
 		
-		
-		var texto : FlxText = new FlxText(0, 0, 0, "Hola");
-		add(texto);
-		
-		FlxG.
-	
-		
-	
+		personaje = new Personaje(FlxG.width/2-32, 370);
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		if (FlxG.keys.pressed.LEFT){ FlxG.camera.scroll.add( -5, 0); }
-		if (FlxG.keys.pressed.RIGHT){ FlxG.camera.scroll.add( 5 , 0); }
-		
+		//if (FlxG.keys.pressed.LEFT){ FlxG.camera.scroll.add( -5, 0); }
+		//if (FlxG.keys.pressed.RIGHT){ FlxG.camera.scroll.add( 5 , 0); }
 	}
 	
 	
