@@ -3,6 +3,9 @@ package;
 import flixel.FlxSprite;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxG;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxTween.TweenCallback;
+import flixel.util.FlxSpriteUtil;
 
 /**
  * ...
@@ -11,9 +14,9 @@ import flixel.FlxG;
 class Enemigo extends FlxSprite 
 {
 
-	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
+	public function new(?X:Float=0, ?Y:Float=0) 
 	{
-		super(X, Y, SimpleGraphic);
+		super(X, Y);
 		loadGraphic(AssetPaths.Boss__png, true, 32, 32);
 		animation.add("caminar", [0, 1, 2, 3], 12);
 		animation.play("caminar");
@@ -21,8 +24,15 @@ class Enemigo extends FlxSprite
 		setGraphicSize(64, 64);
 		updateHitbox();
 		
-		velocity.set(-50, 0);
+		if (x < FlxG.worldBounds.width/2){
+			velocity.set(50, 0);
+		}else{
+			velocity.set(-50, 0);
 		flipX = true;
+		}
+		
+		
+		
 		
 		FlxG.state.add(this);
 	}
@@ -34,4 +44,13 @@ class Enemigo extends FlxSprite
 	
 	
 	
+	override public function kill():Void 
+	{
+		FlxSpriteUtil.fadeOut(this, 1, onComplete);
+	}
+	
+	public function onComplete(tween: FlxTween): Void{
+		super.kill();
+		trace("killed");
+	}
 }

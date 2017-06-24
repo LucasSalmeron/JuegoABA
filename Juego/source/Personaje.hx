@@ -121,7 +121,7 @@ class Personaje extends FlxSprite
 	
 	public function matarenemigo(obj1 : FlxObject, obj2: FlxObject):Void{
 		
-		
+		obj2.kill();
 		trace("yes " + cont);
 	}
 	
