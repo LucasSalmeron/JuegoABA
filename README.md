@@ -1,11 +1,11 @@
 # JuegoABA
 
-Clase Personaje ( )
-Enemigo Basico ( )
+Clase Personaje (X)
+Enemigo Basico (X)
 Final Boss ( )
-Diálogos
+DiÃ¡logos
 Ataque de globos ( )
-Adaptación a HTML5 ( )
-Adaptación a movible ( )
-Menú principal ( )
+AdaptaciÃ³n a HTML5 ( )
+AdaptaciÃ³n a movible ( )
+MenÃº principal ( )
 Menu de fin ( )
