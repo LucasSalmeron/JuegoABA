@@ -14,6 +14,7 @@ class PlayState extends FlxState
 	public var personaje : Personaje;
 	public var enemigo : Enemigo;
 	public var cantenemigos: Int = 50;
+	public var barra : HealthBar;
 	override public function create():Void
 	{
 		super.create();
@@ -31,14 +32,14 @@ class PlayState extends FlxState
 		var _x : Int;
 		for (i in 0...cantenemigos){
 			do{
-			_x = Std.random(5000);
+			_x = Std.random(Std.int(FlxG.worldBounds.width));
 			}while (_x > FlxG.worldBounds.width/2 -500 && _x < FlxG.worldBounds.width/2 +500);
-			enemigo = new Enemigo(_x, 370 + personaje.height - 64);
+			enemigo = new Enemigo(_x, 370 + personaje.height - 64, personaje);
 			personaje.enemigos.add(enemigo);
 		}
 		
 		
-		
+		barra = new HealthBar(personaje, "vida");
 		
 		
 	}
@@ -47,6 +48,7 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 	
+		barra.update(elapsed);
 	}
 	
 	

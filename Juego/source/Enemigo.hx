@@ -14,7 +14,9 @@ import flixel.util.FlxSpriteUtil;
 class Enemigo extends FlxSprite 
 {
 
-	public function new(?X:Float=0, ?Y:Float=0) 
+	var personaje : Personaje;
+	
+	public function new(?X:Float=0, ?Y:Float=0, _p : Personaje) 
 	{
 		super(X, Y);
 		loadGraphic(AssetPaths.Boss__png, true, 32, 32);
@@ -32,7 +34,7 @@ class Enemigo extends FlxSprite
 		}
 		
 		
-		
+		personaje = _p;
 		
 		FlxG.state.add(this);
 	}
@@ -40,12 +42,17 @@ class Enemigo extends FlxSprite
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
+		
+		
+		
+		
 	}
 	
 	
 	
 	override public function kill():Void 
 	{
+		set_alive(false);
 		FlxSpriteUtil.fadeOut(this, 1, onComplete);
 	}
 	

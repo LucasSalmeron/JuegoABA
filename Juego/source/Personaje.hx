@@ -15,7 +15,7 @@ class Personaje extends FlxSprite
 	private var aux:Bool = false;
 	public var invisibleBox : FlxSprite;
 	public var enemigos : FlxGroup;
-	
+	public var vida : Int = 5;
 	public var cont : Int = 0;
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
