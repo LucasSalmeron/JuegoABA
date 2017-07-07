@@ -11,7 +11,7 @@ import flixel.FlxG;
 class HealthBar extends FlxBar 
 {
 	var personaje : Personaje;
-	var _x : Int;
+	var _x : Float;
 
 	public function new(parentRef:Dynamic, variable:String="") 
 	{

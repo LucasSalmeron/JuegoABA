@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxG;
@@ -15,7 +16,7 @@ class Enemigo extends FlxSprite
 {
 
 	var personaje : Personaje;
-	
+	var ataco : Bool = false;
 	public function new(?X:Float=0, ?Y:Float=0, _p : Personaje) 
 	{
 		super(X, Y);
@@ -37,15 +38,25 @@ class Enemigo extends FlxSprite
 		personaje = _p;
 		
 		FlxG.state.add(this);
+		
 	}
 	
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
 		
+		if(!ataco){
+		FlxG.overlap(personaje, this, atacar);
+		}
 		
 		
 		
+	}
+	
+	public function atacar(p : FlxObject, o: FlxObject):Void{
+		ataco = true;
+		personaje.atacado();
+		kill();
 	}
 	
 	
@@ -53,7 +64,9 @@ class Enemigo extends FlxSprite
 	override public function kill():Void 
 	{
 		set_alive(false);
-		FlxSpriteUtil.fadeOut(this, 1, onComplete);
+		animation.stop();
+		velocity.set(0, 0);
+		FlxSpriteUtil.fadeOut(this,0.3, onComplete);
 	}
 	
 	public function onComplete(tween: FlxTween): Void{

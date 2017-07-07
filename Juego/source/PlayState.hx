@@ -42,6 +42,9 @@ class PlayState extends FlxState
 		barra = new HealthBar(personaje, "vida");
 		
 		
+		
+		FlxG.debugger.visible = true;
+		
 	}
 
 	override public function update(elapsed:Float):Void

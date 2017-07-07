@@ -113,11 +113,19 @@ class Personaje extends FlxSprite
 			}
 			
 		}
+		
+		if (FlxG.keys.justPressed.C){
+			atacado();
+		}
 
 		
 		
 	}
 	
+	public function atacado(){
+		vida--;
+		trace("a");
+	}
 	
 	public function matarenemigo(obj1 : FlxObject, obj2: FlxObject):Void{
 		
