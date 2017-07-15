@@ -17,6 +17,8 @@ class Enemigo extends FlxSprite
 
 	var personaje : Personaje;
 	var ataco : Bool = false;
+	var cont : Int = 0;
+	public var id : Int;
 	public function new(?X:Float=0, ?Y:Float=0, _p : Personaje) 
 	{
 		super(X, Y);
@@ -44,8 +46,8 @@ class Enemigo extends FlxSprite
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
-		
-		if(!ataco){
+		cont++;
+		if (!ataco){
 		FlxG.overlap(personaje, this, atacar);
 		}
 		
@@ -54,19 +56,23 @@ class Enemigo extends FlxSprite
 	}
 	
 	public function atacar(p : FlxObject, o: FlxObject):Void{
+		if(alive){
 		ataco = true;
 		personaje.atacado();
 		kill();
+		}
 	}
 	
 	
 	
 	override public function kill():Void 
 	{
+
 		set_alive(false);
 		animation.stop();
 		velocity.set(0, 0);
-		FlxSpriteUtil.fadeOut(this,0.3, onComplete);
+		FlxSpriteUtil.fadeOut(this, 0.3, onComplete);
+		
 	}
 	
 	public function onComplete(tween: FlxTween): Void{

@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxG;
+import flixel.util.FlxColor;
 /**
  * ...
  * @author ...
@@ -16,7 +17,11 @@ class Personaje extends FlxSprite
 	public var invisibleBox : FlxSprite;
 	public var enemigos : FlxGroup;
 	public var vida : Int = 5;
-	public var cont : Int = 0;
+	public var cont : Int = 0; //borrar despues
+public var score : Int = 0;
+
+
+var auxxxxxxxx: Bool = false;
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
@@ -30,11 +35,15 @@ class Personaje extends FlxSprite
 		this.animation.play("idle");
 		this.setGraphicSize(64, 128);
 		this.updateHitbox();
+		this.setSize(32, 128);
+		this.centerOffsets();
 		
 		enemigos = new FlxGroup();
 		invisibleBox = new FlxSprite(0, 0);
-		invisibleBox.makeGraphic(20, 15);
+		invisibleBox.makeGraphic(40, 15, FlxColor.TRANSPARENT);
 		FlxG.state.add(invisibleBox);
+		
+		
 	}
 	
 	override public function update(elapsed: Float){
@@ -84,6 +93,7 @@ class Personaje extends FlxSprite
 			if (animation.name == "idle"){
 				animation.stop();
 				animation.play("caminar");
+				
 			}
 		}
 		else{
@@ -93,9 +103,10 @@ class Personaje extends FlxSprite
 		
 		}
 		
-		if (FlxG.keys.justPressed.SPACE){
+		if (FlxG.keys.justPressed.SPACE|| !auxxxxxxxx){
 			animation.play("golpe");
 			aux = true;
+			auxxxxxxxx = true;
 		}
 		if (aux){
 			if (animation.name == "golpe" && animation.frameIndex == 28){
@@ -106,7 +117,6 @@ class Personaje extends FlxSprite
 				{
 					invisibleBox.setPosition(x + width, y + height/2);
 				}
-				trace("llega" + cont);
 				FlxG.overlap(invisibleBox, enemigos, matarenemigo);
 				
 				aux = false;
@@ -114,9 +124,7 @@ class Personaje extends FlxSprite
 			
 		}
 		
-		if (FlxG.keys.justPressed.C){
-			atacado();
-		}
+		
 
 		
 		
@@ -124,13 +132,15 @@ class Personaje extends FlxSprite
 	
 	public function atacado(){
 		vida--;
-		trace("a");
+		if (vida == 0){
+			FlxG.switchState(new PlayState());
+		}
 	}
 	
 	public function matarenemigo(obj1 : FlxObject, obj2: FlxObject):Void{
 		
 		obj2.kill();
-		trace("yes " + cont);
+		score += 10;
 	}
 	
 }
