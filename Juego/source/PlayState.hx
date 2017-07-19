@@ -8,8 +8,6 @@ import flixel.util.FlxColor;
 import flixel.addons.display.FlxBackdrop;
 import flixel.FlxObject;
 import flixel.FlxCamera.FlxCameraFollowStyle;
-import flixel.util.FlxSave;
-
 class PlayState extends FlxState
 {
 	public var personaje : Personaje;
