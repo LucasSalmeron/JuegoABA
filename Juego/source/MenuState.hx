@@ -24,6 +24,8 @@ class MenuState extends FlxState
 	var img4 :FlxSprite;
 	var aux : Bool = false;
 	
+	var p : String = "";
+	
 	override public function create():Void 
 	{
 		super.create();
@@ -73,12 +75,12 @@ class MenuState extends FlxState
 				var y = FlxG.mouse.y;
 				
 				if (x > 41 && x < 425 && y > 188 && y < 576){
-					trace("itai");
+					p = "itai";
 					aux = false;
 				}
 				
 				if ( x > 536 && x < 920 && y > 188 && y < 576){
-					trace("eli");
+				    p = "eli";
 					aux = false;
 				}
 			}
@@ -102,6 +104,7 @@ class MenuState extends FlxState
 	public function changealpha2(tmr: FlxTimer){
 		img4.alpha -= 0.05;
 		if (img4.alpha == 0){
+			PlayState.txtP = p;
 			FlxG.switchState(new PlayState());
 		}
 	}

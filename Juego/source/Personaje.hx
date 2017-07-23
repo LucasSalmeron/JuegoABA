@@ -3,6 +3,7 @@ package;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxG;
 import flixel.util.FlxColor;
@@ -15,30 +16,32 @@ class Personaje extends FlxSprite
 
 	private var aux:Bool = false;
 	public var invisibleBox : FlxSprite;
-	public var enemigos : FlxGroup;
+	public var enemigos : FlxSpriteGroup;
 	public var vida : Int = 5;
 	public var cont : Int = 0; //borrar despues
 public var score : Int = 0;
-
 
 var auxxxxxxxx: Bool = false;
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
-		loadGraphic(AssetPaths.advnt_full__png, true, 32, 64);
+		if(PlayState.txtP == "itai"){
+		loadGraphic(AssetPaths.itai__png, true, 133, 266); }
+		else{
+			loadGraphic(AssetPaths.eli__png, true, 133, 266);
+		}
         FlxG.state.add(this);
 		
 		this.animation.add("caminar", [1,2,3,4,5,6],12);
 		this.animation.add("idle", [0]);
 		this.animation.add("golpe", [27, 28, 0], 10, false);
-		
 		this.animation.play("idle");
 		this.setGraphicSize(64, 128);
 		this.updateHitbox();
 		this.setSize(32, 128);
 		this.centerOffsets();
 		
-		enemigos = new FlxGroup();
+		enemigos = new FlxSpriteGroup();
 		invisibleBox = new FlxSprite(0, 0);
 		invisibleBox.makeGraphic(40, 15, FlxColor.TRANSPARENT);
 		FlxG.state.add(invisibleBox);
@@ -70,8 +73,8 @@ var auxxxxxxxx: Bool = false;
 		if (FlxG.keys.pressed.LEFT && !FlxG.keys.pressed.RIGHT){
 			if(FlxG.worldBounds.x < x - 20){  
 			set_flipX(true);
-		    x -= 5;
-			FlxG.camera.scroll.add( -5, 0);
+		    x -= 4;
+			FlxG.camera.scroll.add( -4, 0);
 			if (animation.name == "idle"){
 				animation.stop();
 				animation.play("caminar");
@@ -88,8 +91,8 @@ var auxxxxxxxx: Bool = false;
 		if (FlxG.keys.pressed.RIGHT && !FlxG.keys.pressed.LEFT){
 			if(FlxG.worldBounds.x + FlxG.worldBounds.width > x + width +  20){  
 			set_flipX(false);
-		    x += 5;
-			FlxG.camera.scroll.add(5, 0);
+		    x += 4;
+			FlxG.camera.scroll.add(4, 0);
 			if (animation.name == "idle"){
 				animation.stop();
 				animation.play("caminar");
@@ -124,6 +127,10 @@ var auxxxxxxxx: Bool = false;
 			
 		}
 		
+		if (FlxG.keys.justPressed.D){
+			animation.play("idle");
+		}
+		
 		
 
 		
@@ -138,9 +145,36 @@ var auxxxxxxxx: Bool = false;
 	}
 	
 	public function matarenemigo(obj1 : FlxObject, obj2: FlxObject):Void{
-		
 		obj2.kill();
-		score += 10;
+		score += 500;
+		PlayState.conte -= 0.5;
+		if (PlayState.conte % 1 != 0){
+			crearEnemigo();
+		}
+		
+		if (score == 100000){
+			trace("win");
+		}
 	}
+	
+public function crearEnemigo(){
+				var _x : Int;
+				var enemigo : Enemigo;
+		do{
+			_x = Std.random(Std.int(FlxG.worldBounds.width));
+			
+			for(e in 0...enemigos.length){
+			if (_x < enemigos.members[e].x + 50 && _x >enemigos.members[e].x  - 50){
+					_x = Std.int(x);
+				}
+			}
+			}while (_x > x -500 && _x < x +500);
+			enemigo = new Enemigo(_x, 370 + height - 64, this);
+			enemigos.add(enemigo);
+			PlayState.conte++;
+			
+	}
+	
+
 	
 }

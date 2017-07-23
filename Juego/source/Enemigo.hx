@@ -18,18 +18,27 @@ class Enemigo extends FlxSprite
 	var personaje : Personaje;
 	var ataco : Bool = false;
 	var cont : Int = 0;
-	public var id : Int;
 	public function new(?X:Float=0, ?Y:Float=0, _p : Personaje) 
 	{
 		super(X, Y);
-		loadGraphic(AssetPaths.Boss__png, true, 32, 32);
-		animation.add("caminar", [0, 1, 2, 3], 12);
-		animation.play("caminar");
+		var n = Std.random(2);
 		
+		if (n == 0){
+			loadGraphic(AssetPaths.lousteau__png, true, 133, 266);
+		}else{
+			loadGraphic(AssetPaths.lilita__png, true, 133, 266);
+		}
+		this.animation.add("caminar", [1,2,3,4,5,6],12);
+		this.animation.add("golpe", [27, 28, 0], 10, false);
+		this.animation.play("caminar");
+		this.setGraphicSize(64, 128);
+		this.updateHitbox();
+		this.setSize(32, 128);
+		this.centerOffsets();
 		setGraphicSize(64, 64);
 		updateHitbox();
 		
-		if (x < FlxG.worldBounds.width/2){
+		if (x < _p.x){
 			velocity.set(50, 0);
 		}else{
 			velocity.set(-50, 0);
@@ -53,6 +62,9 @@ class Enemigo extends FlxSprite
 		
 		
 		
+		
+		
+		
 	}
 	
 	public function atacar(p : FlxObject, o: FlxObject):Void{
@@ -67,7 +79,6 @@ class Enemigo extends FlxSprite
 	
 	override public function kill():Void 
 	{
-
 		set_alive(false);
 		animation.stop();
 		velocity.set(0, 0);
@@ -77,6 +88,7 @@ class Enemigo extends FlxSprite
 	
 	public function onComplete(tween: FlxTween): Void{
 		super.kill();
-		trace("killed");
+		
+		
 	}
 }
