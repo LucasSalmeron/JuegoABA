@@ -7,6 +7,7 @@ import flixel.FlxG;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxTween.TweenCallback;
 import flixel.util.FlxSpriteUtil;
+import flixel.util.FlxColor;
 
 /**
  * ...
@@ -28,6 +29,8 @@ class Enemigo extends FlxSprite
 		}else{
 			loadGraphic(AssetPaths.lilita__png, true, 133, 266);
 		}
+		this.y = _p.y;
+		
 		this.animation.add("caminar", [1,2,3,4,5,6],12);
 		this.animation.add("golpe", [27, 28, 0], 10, false);
 		this.animation.play("caminar");
@@ -35,8 +38,6 @@ class Enemigo extends FlxSprite
 		this.updateHitbox();
 		this.setSize(32, 128);
 		this.centerOffsets();
-		setGraphicSize(64, 64);
-		updateHitbox();
 		
 		if (x < _p.x){
 			velocity.set(50, 0);
@@ -57,7 +58,34 @@ class Enemigo extends FlxSprite
 		super.update(elapsed);
 		cont++;
 		if (!ataco){
-		FlxG.overlap(personaje, this, atacar);
+			var dist;
+			if (this.x > personaje.x){
+				dist = this.x - personaje.x;
+			}else{
+				dist = personaje.x - this.x;
+			}
+			
+			if (dist < 50){
+				animation.play("golpe");
+			}
+			
+		}
+		
+		if (animation.name == "golpe" && animation.frameIndex == 28 && this.alive){
+			var invisibleBox = new FlxSprite(0, 0);
+		invisibleBox.makeGraphic(40, 15, FlxColor.TRANSPARENT);
+		FlxG.state.add(invisibleBox);
+		if (this.flipX){
+					invisibleBox.setPosition(x - invisibleBox.width, y + height / 2);
+				}
+				else
+				{
+					invisibleBox.setPosition(x + width, y + height/2);
+				}
+				FlxG.overlap(personaje, invisibleBox, atacar);
+				
+				invisibleBox.destroy();
+				
 		}
 		
 		
