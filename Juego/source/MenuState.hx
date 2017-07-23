@@ -31,12 +31,12 @@ class MenuState extends FlxState
 		super.create();
 		btn  = new FlxButton(0, 0,"" , jugar);
 		btn.loadGraphic(AssetPaths.btnjugar__png, true, 80, 20);
-		btn.setGraphicSize(160, 40);
+		btn.setGraphicSize(240, 60);
 		btn.updateHitbox();
 
 		btn2  = new FlxButton(0,50, "", links);
 		btn2.loadGraphic(AssetPaths.btnpropuestas__png, true, 80, 20);
-		btn2.setGraphicSize(160, 40);
+		btn2.setGraphicSize(240, 60);
 		btn2.updateHitbox();
 	
 		

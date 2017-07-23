@@ -23,11 +23,11 @@ class EndState extends FlxState
 		}
 		add(spr);
 		
-		var btn : FlxButton = new FlxButton(0, 0, "VOLVER A JUGAR", reiniciar);
+		var btn : FlxButton = new FlxButton(0, 0, "", reiniciar);
 			btn.loadGraphic(AssetPaths.btnvolverajugar__png, true, 80, 20);
 			add(btn);
 			
-			btn.setGraphicSize(160, 40);
+			btn.setGraphicSize(240, 60);
 		
 		btn.setPosition(FlxG.width / 2 - btn.width / 2, FlxG.height / 2 );
 	}
