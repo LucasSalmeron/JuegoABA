@@ -34,7 +34,7 @@ var auxxxxxxxx: Bool = false;
 		
 		this.animation.add("caminar", [1,2,3,4,5,6],12);
 		this.animation.add("idle", [0]);
-		this.animation.add("golpe", [27, 28, 0], 10, false);
+		this.animation.add("golpe", [27, 28,0], 10, false);
 		this.animation.play("idle");
 		this.setGraphicSize(64, 128);
 		this.updateHitbox();
@@ -111,6 +111,13 @@ var auxxxxxxxx: Bool = false;
 			aux = true;
 			auxxxxxxxx = true;
 		}
+		
+		if (animation.name == "golpe" && animation.frameIndex == 0){
+			animation.stop();
+			animation.play("idle");
+		}
+		
+		
 		if (aux){
 			if (animation.name == "golpe" && animation.frameIndex == 28){
 				if (this.flipX){
@@ -121,26 +128,26 @@ var auxxxxxxxx: Bool = false;
 					invisibleBox.setPosition(x + width, y + height/2);
 				}
 				FlxG.overlap(invisibleBox, enemigos, matarenemigo);
-				
 				aux = false;
 			}
 			
 		}
 		
+		
+		
+		
+		
 		if (FlxG.keys.justPressed.D){
 			animation.play("idle");
 		}
-		
-		
-
-		
 		
 	}
 	
 	public function atacado(){
 		vida--;
 		if (vida == 0){
-			FlxG.switchState(new PlayState());
+			PlayState.txtP = "Derrota";
+			FlxG.switchState(new EndState());
 		}
 	}
 	
@@ -153,7 +160,8 @@ var auxxxxxxxx: Bool = false;
 		}
 		
 		if (score == 100000){
-			trace("win");
+			PlayState.txtP = "Victoria";
+			FlxG.switchState(new EndState());
 		}
 	}
 	

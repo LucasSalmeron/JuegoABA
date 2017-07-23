@@ -29,11 +29,15 @@ class MenuState extends FlxState
 	override public function create():Void 
 	{
 		super.create();
-		btn  = new FlxButton(0, 0, "Jugar", jugar);
-		btn.loadGraphic(AssetPaths.btn__png, true, 80, 20);
+		btn  = new FlxButton(0, 0,"" , jugar);
+		btn.loadGraphic(AssetPaths.btnjugar__png, true, 80, 20);
+		btn.setGraphicSize(160, 40);
+		btn.updateHitbox();
 
-		btn2  = new FlxButton(0,50, "Links", links);
-		btn.loadGraphic(AssetPaths.btn__png, true, 80, 20);
+		btn2  = new FlxButton(0,50, "", links);
+		btn2.loadGraphic(AssetPaths.btnpropuestas__png, true, 80, 20);
+		btn2.setGraphicSize(160, 40);
+		btn2.updateHitbox();
 	
 		
 		btn.visible = false;
@@ -60,6 +64,12 @@ class MenuState extends FlxState
 		
 		add(btn);
 		add(btn2);
+		
+		btn.setPosition(FlxG.width / 3 * 2 - Std.int(btn.width) / 2, FlxG.height / 2 );
+		btn2.setPosition(FlxG.width / 3 * 2 - Std.int(btn2.width) / 2, FlxG.height / 2 + btn.height + 15);
+
+		
+	
 	}
 	
 	
