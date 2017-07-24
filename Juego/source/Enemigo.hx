@@ -78,6 +78,8 @@ class Enemigo extends FlxSprite
 		}
 		
 		if (animation.name == "golpe" && animation.frameIndex == 28 && this.alive){
+			
+			
 			var invisibleBox = new FlxSprite(0, 0);
 		invisibleBox.makeGraphic(40, 15, FlxColor.TRANSPARENT);
 		FlxG.state.add(invisibleBox);
@@ -102,7 +104,8 @@ class Enemigo extends FlxSprite
 	}
 	
 	public function atacar(p : FlxObject, o: FlxObject):Void{
-		if(alive){
+		if (alive){
+			FlxG.sound.play(AssetPaths.AtaqueMalo__wav);
 		ataco = true;
 		personaje.atacado();
 		kill();

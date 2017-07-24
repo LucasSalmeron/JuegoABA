@@ -1,4 +1,5 @@
 package;
+import openfl.Assets;
 
 import flixel.FlxState;
 import flixel.text.FlxText;
@@ -8,6 +9,7 @@ import flixel.util.FlxColor;
 import flixel.addons.display.FlxBackdrop;
 import flixel.FlxObject;
 import flixel.FlxCamera.FlxCameraFollowStyle;
+import openfl.Assets;
 class PlayState extends FlxState
 {
 	public var personaje : Personaje;
@@ -44,8 +46,9 @@ class PlayState extends FlxState
 		
 		scrtxt = new Score(0, 50, 0, "VOTOS 00000", 24, true, personaje);
 		scrtxt.color = 0x491C51;
+		FlxG.sound.music.stop();
 
-		
+		FlxG.sound.playMusic(AssetPaths.cancion__wav,0.7);
 		
 	
 		

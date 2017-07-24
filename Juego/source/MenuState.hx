@@ -1,5 +1,4 @@
 package;
-
 import flash.net.URLRequest;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -29,6 +28,8 @@ class MenuState extends FlxState
 	override public function create():Void 
 	{
 		super.create();
+		
+		
 		btn  = new FlxButton(0, 0,"" , jugar);
 		btn.loadGraphic(AssetPaths.btnjugar__png, true, 80, 20);
 		btn.setGraphicSize(240, 60);
@@ -69,9 +70,7 @@ class MenuState extends FlxState
 		btn2.setPosition(FlxG.width / 3 * 2 - Std.int(btn2.width) / 2, btn.y + btn.height + 15);
 
 		
-		
-		
-		
+		FlxG.sound.playMusic(AssetPaths.inicio__wav);
 		
 	
 	}
@@ -88,11 +87,13 @@ class MenuState extends FlxState
 				var y = FlxG.mouse.y;
 				
 				if (x > 41 && x < 425 && y > 188 && y < 576){
+					FlxG.sound.play(AssetPaths.Select__wav);
 					p = "itai";
 					aux = false;
 				}
 				
 				if ( x > 536 && x < 920 && y > 188 && y < 576){
+					FlxG.sound.play(AssetPaths.Select__wav);
 				    p = "eli";
 					aux = false;
 				}
@@ -137,12 +138,13 @@ class MenuState extends FlxState
 	
 	
 	public function links(){
-		
+		FlxG.sound.play(AssetPaths.Select__wav);
 
 		Lib.getURL(new URLRequest("https://ahorabuenosaires.info/propuestas/"));
 		
 	}
 	public function jugar(){
+		FlxG.sound.play(AssetPaths.Select__wav);
 		btn.visible = false;
 		btn2.visible = false;
 		img2.visible = false;
