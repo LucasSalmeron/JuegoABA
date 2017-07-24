@@ -156,7 +156,7 @@ var auxxxxxxxx: Bool = false;
 		score += 500;
 		PlayState.conte -= 0.5;
 		if (PlayState.conte % 1 != 0){
-			FlxG.sound.play(AssetPaths.AtaqueBueno__wav);
+		//	FlxG.sound.play(AssetPaths.AtaqueBueno__wav);
 			crearEnemigo();
 		}
 		

@@ -46,9 +46,9 @@ class PlayState extends FlxState
 		
 		scrtxt = new Score(0, 50, 0, "VOTOS 00000", 24, true, personaje);
 		scrtxt.color = 0x491C51;
-		FlxG.sound.music.stop();
+		//FlxG.sound.music.stop();
 
-		FlxG.sound.playMusic(AssetPaths.cancion__wav,0.7);
+		//FlxG.sound.playMusic(AssetPaths.cancion__wav,0.7);
 		
 	
 		
