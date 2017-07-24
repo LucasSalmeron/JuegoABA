@@ -29,7 +29,7 @@ class Score extends FlxText
 	super.update(elapsed);
 	if (_x != personaje.x){
 		_x = personaje.x;
-		this.x = personaje.x + FlxG.width / 2 - 150;
+		this.x = personaje.x + 250;
 	}
 	
 	if (personaje.score != s){

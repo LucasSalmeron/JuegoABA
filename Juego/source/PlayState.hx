@@ -13,16 +13,16 @@ class PlayState extends FlxState
 	public var personaje : Personaje;
 	public var enemigo : Enemigo;
 	public var cantenemigos: Int = 30;
-	public var barra : HealthBar;
 	public var scrtxt: FlxText;
 	
 	public static var conte: Float = 0;
 	
 	public static var txtP : String = "";
+	
+	public var vidas : Vidas;
 	override public function create():Void
 	{
 		super.create();
-		trace(txtP);
 		FlxG.worldBounds.set( 0, 0, 12000, 1000);
 		var bg : FlxBackdrop = new FlxBackdrop(AssetPaths.fondo__png , 1, 0, true, false);
 		var fg : FlxBackdrop = new FlxBackdrop(AssetPaths.piso__png, 1, 0, true, false);
@@ -40,14 +40,14 @@ class PlayState extends FlxState
 		}
 		
 		
-		barra = new HealthBar(personaje, "vida");
+		vidas  = new Vidas(personaje);
 		
-		scrtxt = new Score(0, 50, 0, "VOTOS 00000", 16,true,personaje);
+		scrtxt = new Score(0, 50, 0, "VOTOS 00000", 24, true, personaje);
+		scrtxt.color = 0x491C51;
+
 		
 		
 	
-		FlxG.debugger.visible = true;
-		FlxG.watch.add(PlayState, "conte", "enemigos cant");
 		
 		personaje.x += 1;
 	}
@@ -58,6 +58,7 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		vidas.update(elapsed);
 	
 	}
 	

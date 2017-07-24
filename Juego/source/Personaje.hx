@@ -18,7 +18,7 @@ class Personaje extends FlxSprite
 	public var invisibleBox : FlxSprite;
 	public var enemigos : FlxSpriteGroup;
 	public var vida : Int = 5;
-	public var cont : Int = 0; //borrar despues
+
 public var score : Int = 0;
 
 var auxxxxxxxx: Bool = false;
@@ -51,7 +51,7 @@ var auxxxxxxxx: Bool = false;
 	
 	override public function update(elapsed: Float){
 		super.update(elapsed);
-		cont++;
+
 		if (FlxG.keys.justReleased.LEFT || FlxG.keys.justReleased.RIGHT){
 			if (this.animation.name == "caminar"){
 				this.animation.stop();

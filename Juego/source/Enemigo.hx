@@ -19,6 +19,8 @@ class Enemigo extends FlxSprite
 	var personaje : Personaje;
 	var ataco : Bool = false;
 	var cont : Int = 0;
+	
+	var velocidad : Int;
 	public function new(?X:Float=0, ?Y:Float=0, _p : Personaje) 
 	{
 		super(X, Y);
@@ -38,6 +40,10 @@ class Enemigo extends FlxSprite
 		this.updateHitbox();
 		this.setSize(32, 128);
 		this.centerOffsets();
+		
+		velocidad = 30 +Std.int( _p.score / 2000);
+		if (velocidad < 50){ velocidad = 50;}
+		
 		
 		if (x < _p.x){
 			velocity.set(50, 0);

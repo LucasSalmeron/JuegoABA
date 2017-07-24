@@ -65,9 +65,13 @@ class MenuState extends FlxState
 		add(btn);
 		add(btn2);
 		
-		btn.setPosition(FlxG.width / 3 * 2 - Std.int(btn.width) / 2, FlxG.height / 2 );
-		btn2.setPosition(FlxG.width / 3 * 2 - Std.int(btn2.width) / 2, FlxG.height / 2 + btn.height + 15);
+		btn.setPosition(FlxG.width / 3 * 2 - Std.int(btn.width) / 2, FlxG.height / 2 + 80 );
+		btn2.setPosition(FlxG.width / 3 * 2 - Std.int(btn2.width) / 2, btn.y + btn.height + 15);
 
+		
+		
+		
+		
 		
 	
 	}
@@ -80,7 +84,6 @@ class MenuState extends FlxState
 		
 		if (aux){
 			if (FlxG.mouse.justPressed){
-				trace(FlxG.mouse.x + "   " + FlxG.mouse.y);
 				var x = FlxG.mouse.x;
 				var y = FlxG.mouse.y;
 				
@@ -135,22 +138,22 @@ class MenuState extends FlxState
 	
 	public function links(){
 		
-	/*	var http : Http = new Http("Ahorabuenosaires.info");
-		http.onError("error");
-		http.onData("kul");
-		http.request();
-	    
-		trace(http.responseData); */
-		
+
 		Lib.getURL(new URLRequest("https://ahorabuenosaires.info/propuestas/"));
 		
 	}
 	public function jugar(){
 		btn.visible = false;
 		btn2.visible = false;
+		img2.visible = false;
 		img3 = new FlxSprite(0, 0);
 		img3.loadGraphic(AssetPaths.placas_juego_06__png);
+		
+		img4 = new FlxSprite(0, 0);
+		img4.loadGraphic(AssetPaths.placas_juego_nada__png);
+		add(img4);
 		add(img3);
+		
 		aux = true;
 	}
 }
