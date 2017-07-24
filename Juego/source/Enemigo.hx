@@ -36,6 +36,7 @@ class Enemigo extends FlxSprite
 		this.animation.add("caminar", [1,2,3,4,5,6],12);
 		this.animation.add("golpe", [27, 28, 0], 10, false);
 		this.animation.play("caminar");
+		this.animation.add("muerte", [51, 52], 8, false);
 		this.setGraphicSize(64, 128);
 		this.updateHitbox();
 		this.setSize(32, 128);
@@ -118,6 +119,7 @@ class Enemigo extends FlxSprite
 	{
 		set_alive(false);
 		animation.stop();
+		animation.play("muerte");
 		velocity.set(0, 0);
 		FlxSpriteUtil.fadeOut(this, 0.3, onComplete);
 		
