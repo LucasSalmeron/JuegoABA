@@ -121,7 +121,7 @@ class Enemigo extends FlxSprite
 	
 	public function atacar(p : FlxObject, o: FlxObject):Void{
 		if (alive){
-		//	FlxG.sound.play(AssetPaths.AtaqueMalo__wav);
+			FlxG.sound.play("assets/AtaqueMalo.ogg");
 		ataco = true;
 		personaje.atacado();
 		kill();

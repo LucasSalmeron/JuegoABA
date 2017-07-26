@@ -25,6 +25,9 @@ class MenuState extends FlxState
 	
 	var p : String = "";
 	
+	
+	var img5: FlxSprite;
+	
 	override public function create():Void 
 	{
 		super.create();
@@ -70,7 +73,12 @@ class MenuState extends FlxState
 		btn2.setPosition(FlxG.width / 3 * 2 - Std.int(btn2.width) / 2, btn.y + btn.height + 15);
 
 		
-	//	FlxG.sound.playMusic(AssetPaths.inicio__wav);
+		FlxG.sound.playMusic("assets/inicio.ogg");
+		
+		img5 = new FlxSprite(0, 0);
+		img5.loadGraphic(AssetPaths.seleccionador__png);
+		img5.visible = false;
+		
 		
 	
 	}
@@ -82,20 +90,36 @@ class MenuState extends FlxState
 		super.update(elapsed);
 		
 		if (aux){
+			var x = FlxG.mouse.x;
+			var y = FlxG.mouse.y;
 			if (FlxG.mouse.justPressed){
-				var x = FlxG.mouse.x;
-				var y = FlxG.mouse.y;
+				
 				
 				if (x > 41 && x < 425 && y > 188 && y < 576){
-				//	FlxG.sound.play(AssetPaths.Select__wav);
+					FlxG.sound.play("assets/Select.ogg");
 					p = "itai";
 					aux = false;
 				}
 				
 				if ( x > 536 && x < 920 && y > 188 && y < 576){
-				//	FlxG.sound.play(AssetPaths.Select__wav);
+					FlxG.sound.play("assets/Select.ogg");
 				    p = "eli";
 					aux = false;
+				}
+			}else{
+				
+				img5.visible = false;
+				
+				if (x > 41 && x < 425 && y > 120 && y < 506){
+					
+				     img5.visible = true;
+					 img5.setPosition(41,  120);
+				}
+				
+				if ( x > 536 && x < 920 && y > 120&& y < 506){
+				
+					img5.visible = true;
+					img5.setPosition(536,  120);
 				}
 			}
 			
@@ -118,6 +142,7 @@ class MenuState extends FlxState
 	public function changealpha2(tmr: FlxTimer){
 		img4.alpha -= 0.05;
 		if (img4.alpha == 0){
+			FlxG.sound.music.fadeOut(1, 0);
 			PlayState.txtP = p;
 			FlxG.switchState(new PlayState());
 		}
@@ -138,13 +163,13 @@ class MenuState extends FlxState
 	
 	
 	public function links(){
-	//	FlxG.sound.play(AssetPaths.Select__wav);
+		FlxG.sound.play("assets/Select.ogg");
 
 		Lib.getURL(new URLRequest("https://ahorabuenosaires.info/propuestas/"));
 		
 	}
 	public function jugar(){
-	//	FlxG.sound.play(AssetPaths.Select__wav);
+		FlxG.sound.play("assets/Select.ogg");
 		btn.visible = false;
 		btn2.visible = false;
 		img2.visible = false;
@@ -155,7 +180,7 @@ class MenuState extends FlxState
 		img4.loadGraphic(AssetPaths.placas_juego_nada__png);
 		add(img4);
 		add(img3);
-		
+		add(img5);
 		aux = true;
 	}
 }
