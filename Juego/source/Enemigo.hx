@@ -20,7 +20,7 @@ class Enemigo extends FlxSprite
 	var ataco : Bool = false;
 	var cont : Int = 0;
 	
-	var velocidad : Int;
+	public static var velocidad : Int;
 	public function new(?X:Float=0, ?Y:Float=0, _p : Personaje) 
 	{
 		super(X, Y);
@@ -47,9 +47,9 @@ class Enemigo extends FlxSprite
 		
 		
 		if (x < _p.x){
-			velocity.set(50, 0);
+			velocity.set(velocidad, 0);
 		}else{
-			velocity.set(-50, 0);
+			velocity.set(-velocidad, 0);
 		flipX = true;
 		}
 		
@@ -63,8 +63,22 @@ class Enemigo extends FlxSprite
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
+		
+		
+		if (velocity.x != velocidad && velocity.x != -velocidad){
+			velocity.set(velocidad, 0);
+				if (x < personaje.x){
+			velocity.set(velocidad, 0);
+		}else{
+			velocity.set(-velocidad, 0);
+		flipX = true;
+		}
+		}
+		
+	
+		
 		cont++;
-		if (!ataco){
+		if (!ataco && alive){
 			var dist;
 			if (this.x > personaje.x){
 				dist = this.x - personaje.x;
@@ -73,6 +87,7 @@ class Enemigo extends FlxSprite
 			}
 			
 			if (dist < 50){
+				
 				animation.play("golpe");
 			}
 			
@@ -121,13 +136,16 @@ class Enemigo extends FlxSprite
 		animation.stop();
 		animation.play("muerte");
 		velocity.set(0, 0);
+		this.setSize(0, 0);
+		
+		
 		FlxSpriteUtil.fadeOut(this, 0.3, onComplete);
 		
 	}
 	
 	public function onComplete(tween: FlxTween): Void{
 		super.kill();
-		
+		this.destroy();
 		
 	}
 }

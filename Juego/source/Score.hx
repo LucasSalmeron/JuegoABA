@@ -49,6 +49,10 @@ class Score extends FlxText
 		}
 		
 		text = t;
+		Enemigo.velocidad = 50 +Std.int( personaje.score / 2000);
+	//	if (Enemigo.velocidad< 50){ Enemigo.velocidad = 50;}
+		
+		
 	}
 	
 	

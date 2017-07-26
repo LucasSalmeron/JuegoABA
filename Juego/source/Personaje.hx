@@ -153,12 +153,11 @@ var auxxxxxxxx: Bool = false;
 	
 	public function matarenemigo(obj1 : FlxObject, obj2: FlxObject):Void{
 		obj2.kill();
-		score += 500;
-		PlayState.conte -= 0.5;
-		if (PlayState.conte % 1 != 0){
+		score += 1000;
+		PlayState.conte -= 1;
 		//	FlxG.sound.play(AssetPaths.AtaqueBueno__wav);
 			crearEnemigo();
-		}
+		
 		
 		if (score == 100000){
 			PlayState.txtP = "Victoria";
@@ -170,8 +169,8 @@ public function crearEnemigo(){
 				var _x : Int;
 				var enemigo : Enemigo;
 		do{
-			_x = Std.random(Std.int(FlxG.worldBounds.width));
-			
+			_x = Std.random(Std.int(FlxG.worldBounds.width+3000));
+			_x = _x - 1500;
 			for(e in 0...enemigos.length){
 			if (_x < enemigos.members[e].x + 50 && _x >enemigos.members[e].x  - 50){
 					_x = Std.int(x);

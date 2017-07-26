@@ -1,15 +1,11 @@
 package;
-import openfl.Assets;
 
 import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.FlxSprite;
 import flixel.FlxG;
-import flixel.util.FlxColor;
 import flixel.addons.display.FlxBackdrop;
-import flixel.FlxObject;
-import flixel.FlxCamera.FlxCameraFollowStyle;
-import openfl.Assets;
+import flixel.util.FlxColor;
 class PlayState extends FlxState
 {
 	public var personaje : Personaje;
@@ -25,7 +21,7 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		super.create();
-		FlxG.worldBounds.set( 0, 0, 12000, 1000);
+		FlxG.worldBounds.set( 0, 0, 8000, 1000);
 		var bg : FlxBackdrop = new FlxBackdrop(AssetPaths.fondo__png , 1, 0, true, false);
 		var fg : FlxBackdrop = new FlxBackdrop(AssetPaths.piso__png, 1, 0, true, false);
 		fg.setPosition(0, 347);
@@ -40,7 +36,6 @@ class PlayState extends FlxState
 		for (i in 0...cantenemigos){
 		    personaje.crearEnemigo();
 		}
-		
 		
 		vidas  = new Vidas(personaje);
 		

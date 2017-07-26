@@ -32,6 +32,7 @@ class EndState extends FlxState
 			add(btn);
 			
 			btn.setGraphicSize(240, 60);
+			btn.updateHitbox();
 		
 		btn.setPosition(FlxG.width / 2 - btn.width / 2, FlxG.height / 2 );
 	}
