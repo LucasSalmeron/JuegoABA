@@ -69,7 +69,7 @@ class MenuState extends FlxState
 		add(btn);
 		add(btn2);
 		
-		btn.setPosition(FlxG.width / 3 * 2 - Std.int(btn.width) / 2, FlxG.height / 2 + 80 );
+		btn.setPosition(FlxG.width / 3 * 2 - Std.int(btn.width) / 2, FlxG.height / 2  + 20);
 		btn2.setPosition(FlxG.width / 3 * 2 - Std.int(btn2.width) / 2, btn.y + btn.height + 15);
 
 		
@@ -128,7 +128,7 @@ class MenuState extends FlxState
 				img4.loadGraphic(AssetPaths.placas_juego_01__png);
 				add(img4);
 				img3.visible = false;
-				
+				img5.visible = false;
 				timer2.start(2.5, startchange, 1);
 			}
 			

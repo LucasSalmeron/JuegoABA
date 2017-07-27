@@ -21,7 +21,7 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		super.create();
-		FlxG.worldBounds.set( 0, 0, 8000, 1000);
+		FlxG.worldBounds.set( 0, 0, 6000, 1000);
 		var bg : FlxBackdrop = new FlxBackdrop(AssetPaths.fondo__png , 1, 0, true, false);
 		var fg : FlxBackdrop = new FlxBackdrop(AssetPaths.piso__png, 1, 0, true, false);
 		fg.setPosition(0, 347);
