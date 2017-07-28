@@ -95,31 +95,33 @@ class MenuState extends FlxState
 			if (FlxG.mouse.justPressed){
 				
 				
-				if (x > 41 && x < 425 && y > 188 && y < 576){
+				if (x > 41 && x < 425 && y > 103 && y < 473){
 					FlxG.sound.play("assets/Select.ogg");
 					p = "itai";
+					
 					aux = false;
 				}
 				
-				if ( x > 536 && x < 920 && y > 188 && y < 576){
+				if ( x > 536 && x < 920 && y > 103 && y < 473){
 					FlxG.sound.play("assets/Select.ogg");
 				    p = "eli";
+					
 					aux = false;
 				}
 			}else{
 				
 				img5.visible = false;
 				
-				if (x > 41 && x < 425 && y > 120 && y < 506){
+				if (x > 41 && x < 425 && y > 103 && y < 473){
 					
 				     img5.visible = true;
-					 img5.setPosition(41,  120);
+					 img5.setPosition(41,  103);
 				}
 				
-				if ( x > 536 && x < 920 && y > 120&& y < 506){
+				if ( x > 536 && x < 920 && y > 103 && y < 473){
 				
 					img5.visible = true;
-					img5.setPosition(536,  120);
+					img5.setPosition(536,  103);
 				}
 			}
 			
