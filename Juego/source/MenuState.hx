@@ -80,6 +80,7 @@ class MenuState extends FlxState
 		img5.visible = false;
 		
 		
+		
 	
 	}
 	
@@ -88,11 +89,12 @@ class MenuState extends FlxState
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
+
 		
 		if (aux){
-			var x = FlxG.mouse.x;
-			var y = FlxG.mouse.y;
-			if (FlxG.mouse.justPressed){
+			var x = Entrada.getX();
+			var y = Entrada.getY();
+			if (Entrada.getClick()){
 				
 				
 				if (x > 41 && x < 425 && y > 103 && y < 473){
@@ -135,6 +137,10 @@ class MenuState extends FlxState
 			}
 			
 		}
+		
+		
+		
+		
 	}
 	
 	public function startchange(tmr: FlxTimer){

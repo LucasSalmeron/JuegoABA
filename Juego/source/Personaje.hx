@@ -22,6 +22,12 @@ class Personaje extends FlxSprite
 public var score : Int = 0;
 
 var auxxxxxxxx: Bool = false;
+
+
+
+var btnizq: Botones;
+var btnder : Botones;
+var btnattack: Botones;
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
@@ -46,34 +52,48 @@ var auxxxxxxxx: Bool = false;
 		invisibleBox.makeGraphic(40, 15, FlxColor.TRANSPARENT);
 		FlxG.state.add(invisibleBox);
 		
+		if(Entrada.esMovil()){
 		
+		btnizq = new Botones(50, FlxG.height / 2 -50, true, true, this);
+		btnder = new Botones(FlxG.width - 50 - btnizq.width, FlxG.height / 2 - 50, true, false, this);
+		btnattack = new Botones( 50, FlxG.height / 2 -50 , false, false, this);
+		btnattack.setPosition(FlxG.width / 2 - btnattack.width / 2, 550);
+		FlxG.state.add(btnizq);
+		FlxG.state.add(btnder);
+		FlxG.state.add(btnattack);
+		}
 	}
 	
 	override public function update(elapsed: Float){
 		super.update(elapsed);
 
-		if (FlxG.keys.justReleased.LEFT || FlxG.keys.justReleased.RIGHT){
+		if (Entrada.bothReleased(btnizq, btnder)){
 			if (this.animation.name == "caminar"){
 				this.animation.stop();
 				this.animation.play("idle");
 			}
 		}
 		
-		if (FlxG.keys.pressed.LEFT && FlxG.keys.pressed.RIGHT){
-			if (this.animation.name == "caminar"){
-				this.animation.stop();
-				this.animation.play("idle");
-			}
-		}
 		
-		if (FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.RIGHT){
+		if (Entrada.oneJustPressed(btnizq, btnder)){
 			this.animation.play("caminar");
 		}
 		
-		if (FlxG.keys.pressed.LEFT && !FlxG.keys.pressed.RIGHT){
+		
+		if (Entrada.BothPressed(btnizq, btnder)){
+			if (this.animation.name == "caminar"){
+				this.animation.stop();
+				this.animation.play("idle");
+			}
+		}
+		
+		
+		
+		if (Entrada.irIzquierda(btnizq)){
 			if(FlxG.worldBounds.x < x - 20){  
 			set_flipX(true);
 		    x -= 4;
+			
 			FlxG.camera.scroll.add( -4, 0);
 			if (animation.name == "idle"){
 				animation.stop();
@@ -88,10 +108,11 @@ var auxxxxxxxx: Bool = false;
 		}
 		
 		
-		if (FlxG.keys.pressed.RIGHT && !FlxG.keys.pressed.LEFT){
+		if (Entrada.irDerecha(btnder)){
 			if(FlxG.worldBounds.x + FlxG.worldBounds.width > x + width +  20){  
 			set_flipX(false);
 		    x += 4;
+			
 			FlxG.camera.scroll.add(4, 0);
 			if (animation.name == "idle"){
 				animation.stop();
@@ -106,7 +127,7 @@ var auxxxxxxxx: Bool = false;
 		
 		}
 		
-		if (FlxG.keys.justPressed.SPACE|| !auxxxxxxxx){
+		if (Entrada.atacar(btnattack)|| !auxxxxxxxx){
 			animation.play("golpe");
 			aux = true;
 			auxxxxxxxx = true;
@@ -137,9 +158,7 @@ var auxxxxxxxx: Bool = false;
 		
 		
 		
-		if (FlxG.keys.justPressed.D){
-			animation.play("idle");
-		}
+		
 		
 	}
 	

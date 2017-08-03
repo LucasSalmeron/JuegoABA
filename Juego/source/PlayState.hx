@@ -16,8 +16,12 @@ class PlayState extends FlxState
 	public static var conte: Float = 0;
 	
 	public static var txtP : String = "";
-	
 	public var vidas : Vidas;
+	
+    
+	
+	
+	
 	override public function create():Void
 	{
 		super.create();
@@ -28,7 +32,6 @@ class PlayState extends FlxState
 		bg.setPosition(0, 25);
 		add(fg);
 		add(bg);
-		
 		personaje = new Personaje(FlxG.worldBounds.width/2 - 32, 370);
 		FlxG.camera.scroll.add(FlxG.worldBounds.width / 2 - 32 - FlxG.width / 2 , 0);
 		conte = 0;
@@ -48,6 +51,10 @@ class PlayState extends FlxState
 	
 		
 		personaje.x += 1;
+		
+	
+		
+		
 	}
 	
 
