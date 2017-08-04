@@ -61,6 +61,7 @@ var btnattack: Botones;
 		FlxG.state.add(btnizq);
 		FlxG.state.add(btnder);
 		FlxG.state.add(btnattack);
+		
 		}
 	}
 	

@@ -13,65 +13,23 @@ class Entrada
 	
 	public static function esMovil(){
 		
-		if (FlxG.html5.browserHeight <= 800){
+		if (FlxG.html5.browserWidth < 800){
+			trace("movil");
 			return true;
 		}else{
+			trace("pc");
 			return false;
 		}
-		
+
 	}
 	
 	
 	
 
-	public static function getX(){
-		
-	if (Entrada.esMovil()){
-       	var touch : FlxTouch = FlxG.touches.getFirst();
-		if ( touch != null){
-			return touch.x;
-		}else{
-			return -1;
-		}
-	}else{
-		return FlxG.mouse.x;
-	}
-		
-	}
 	
 	
-	public static function getY(){
-		
-	if (Entrada.esMovil()){
-		var touch : FlxTouch = FlxG.touches.getFirst();
-		if ( touch != null){
-			return touch.y;
-		}else{
-			return -1;
-		}
-	}else{
-		return FlxG.mouse.y;
-	}
-		
-	}
 	
 	
-	public static function getClick(){
-		if (Entrada.esMovil()){
-		var touch : FlxTouch = FlxG.touches.getFirst();
-		if ( touch != null){
-			return touch.justPressed;
-		}else{
-			return false;
-		}
-		
-		
-		}else{
-			return FlxG.mouse.justPressed;
-		}
-		
-		
-	}
 	
 	
 	public static function irIzquierda(btn : Botones){
