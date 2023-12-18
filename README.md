@@ -1,11 +1,4 @@
 # JuegoABA
 
-Clase Personaje (X)
-Enemigo Basico (X)
-Final Boss ( )
-Diálogos
-Ataque de globos ( )
-Adaptación a HTML5 ( )
-Adaptación a movible ( )
-Menú principal ( )
-Menu de fin ( )
+Este es un juego realizado para una campaña politica del año 2017.
+Desarrollado con HaxeFlixel con adaptacion web y mobile.
